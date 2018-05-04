@@ -31,12 +31,14 @@
 	"require": {
 		"php": ">=5.4.0",
 		"mvccore/mvccore": "dev-master",
-		"mvccore/ext-view-helper": "dev-master"
+		"mvccore/ext-view-helper": "dev-master",
+		"mvccore/ext-tool-locales": "dev-master"
 	},
 	"require-dev": {
 		"php": ">=5.4.0",
 		"mvccore/mvccore": "@dev",
-		"mvccore/ext-view-helper": "@dev"
+		"mvccore/ext-view-helper": "@dev",
+		"mvccore/ext-tool-locales": "@dev"
 	},
 	"autoload": {
 		"classmap": ["src/"]
