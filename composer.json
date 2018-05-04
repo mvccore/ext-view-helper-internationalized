@@ -1,0 +1,45 @@
+{
+	"name": "mvccore/ext-view-helper-internationalized",
+	"type": "library",
+	"description": "MvcCore Extension - View Helper - Internationalized - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions.",
+	"keywords": [
+		"mvc", 
+		"mvccore", 
+		"framework", 
+		"extension", 
+		"plugin", 
+		"plug-in", 
+		"ext", 
+		"view", 
+		"helper", 
+		"viewhelper", 
+		"internationalized", 
+		"intl", 
+		"localized", 
+		"abstract", 
+		"parent"
+	],
+	"license": ["BSD-3-Clause"],
+	"authors": [{
+		"name": "Tom Flidr",
+		"homepage": "https://github.com/tomFlidr"
+	}],
+	"repositories": [{
+		"type": "path",
+		"url": "../../packages"
+	}],
+	"require": {
+		"php": ">=5.4.0",
+		"mvccore/mvccore": "dev-master",
+		"mvccore/ext-view-helper": "dev-master"
+	},
+	"require-dev": {
+		"php": ">=5.4.0",
+		"mvccore/mvccore": "@dev",
+		"mvccore/ext-view-helper": "@dev"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"minimum-stability": "dev"
+}
