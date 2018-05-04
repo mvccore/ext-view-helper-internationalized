@@ -14,7 +14,7 @@
 namespace MvcCore\Ext\View\Helpers;
 
 /**
- * Responsibility - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions..
+ * Responsibility - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions.
  * - Formating processed by `Intl` extension if installed or (automaticly) configured system locale settings.
  * - System locale settings automaticly configured by request language and request locale.
  * - Encoding result string to always return it in response encoding, in UTF-8 by default.
