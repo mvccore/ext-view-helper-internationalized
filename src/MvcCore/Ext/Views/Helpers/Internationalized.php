@@ -57,7 +57,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * Storage with `Intl` datetime and number formater instances.
 	 * @var \IntlDateFormatter[]|\NumberFormatter[]
 	 */
-	protected $intlFormaters = array();
+	protected $intlFormaters = [];
 
 	/**
 	 * Default encoding to use if there is no response encoding configured.
@@ -69,7 +69,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * System `setlocale()` category to set up system locale automaticly in `SetView()` method.
 	 * @var \int[]
 	 */
-	protected $localeCategories = array(LC_ALL);
+	protected $localeCategories = [LC_ALL];
 
 	/**
 	 * `TRUE` if there necessary to process any `iconv()` conversion from `strftime()`
@@ -101,7 +101,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * and when there is necessary to define some default formating rules.
 	 * @var string[]
 	 */
-	protected $defaultLangAndLocale = array('en', 'US');
+	protected $defaultLangAndLocale = ['en', 'US'];
 
 	/**
 	 * Create new helper instance, set boolean about `Intl` extension formating by loaded extension.
@@ -165,7 +165,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * @param string[] $defaultLangAndLocale
 	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
 	 */
-	public function & SetDefaultLangAndLocale ($defaultLangAndLocale = array('en', 'US')) {
+	public function & SetDefaultLangAndLocale ($defaultLangAndLocale = ['en', 'US']) {
 		$this->defaultLangAndLocale = $defaultLangAndLocale;
 		return $this;
 	}
@@ -195,7 +195,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 		}
 		$this->systemEncoding = NULL;
 		if ($this->lang !== NULL && $this->locale !== NULL) {
-			$systemEncodings = array();
+			$systemEncodings = [];
 			foreach ($this->localeCategories as $localeCategory) {
 				$newRawSystemLocaleValue = \MvcCore\Ext\Tools\Locale::SetLocale(
 					$localeCategory,
