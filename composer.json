@@ -1,7 +1,7 @@
 {
 	"name": "mvccore/ext-view-helper-internationalized",
 	"type": "library",
-	"description": "MvcCore Extension - View Helper - Internationalized - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions.",
+	"description": "MvcCore - Extension - View - Helper - Internationalized - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions.",
 	"keywords": [
 		"mvc", 
 		"mvccore", 
