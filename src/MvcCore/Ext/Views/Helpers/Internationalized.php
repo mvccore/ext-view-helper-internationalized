@@ -172,10 +172,10 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 
 	/**
 	 * Set up view properties and language and locale by request object in every view rendering change.
-	 * @param \MvcCore\Interfaces\IView $view
+	 * @param \MvcCore\IView $view
 	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
 	 */
-	public function & SetView (\MvcCore\Interfaces\IView & $view) {
+	public function & SetView (\MvcCore\IView & $view) {
 		parent::SetView($view);
 		return $this->SetLangAndLocale($this->request->GetLang(), $this->request->GetLocale());
 	}
