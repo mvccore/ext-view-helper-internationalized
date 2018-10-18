@@ -13,13 +13,15 @@
 
 namespace MvcCore\Ext\Views\Helpers;
 
+use \MvcCore\Ext\Tools;
+
 /**
  * Responsibility - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions.
  * - Formating processed by `Intl` extension if installed or (automaticly) configured system locale settings.
  * - System locale settings automaticly configured by request language and request locale.
  * - Encoding result string to always return it in response encoding, in UTF-8 by default.
  */
-abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelper
+abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\AbstractHelper
 {
 	/**
 	 * MvcCore Extension - View Helper - Assets - version:
@@ -105,7 +107,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 
 	/**
 	 * Create new helper instance, set boolean about `Intl` extension formating by loaded extension.
-	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
+	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function __construct () {
 		$this->intlExtensionFormating = extension_loaded('Intl');
@@ -120,7 +122,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * @see http://php.net/number_format
 	 * @see http://php.net/money_format
 	 * @param bool $intlExtensionFormating `TRUE` by default.
-	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
+	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function & SetIntlExtensionFormating ($intlExtensionFormating = TRUE) {
 		$this->intlExtensionFormating = $intlExtensionFormating;
@@ -132,7 +134,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * Use this function olny if there is no language and locale codes presented in request object.
 	 * @param string $lang `"en" | "de" ...`
 	 * @param string $locale `"US" | "GB" ...`
-	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
+	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function & SetLangAndLocale ($lang = NULL, $locale = NULL) {
 		$this->lang = $lang;
@@ -151,7 +153,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * Use this function is used only if `Intl` extension is not installed
 	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formating as a fallback.
 	 * @param string $encoding
-	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
+	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function & SetDefaultEncoding ($encoding = 'UTF-8') {
 		$this->defaultEncoding = strtoupper($encoding);
@@ -163,7 +165,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	 * when is not possible to configure system locale value
 	 * and when there is necessary to define some default formating rules.
 	 * @param string[] $defaultLangAndLocale
-	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
+	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function & SetDefaultLangAndLocale ($defaultLangAndLocale = ['en', 'US']) {
 		$this->defaultLangAndLocale = $defaultLangAndLocale;
@@ -173,7 +175,7 @@ abstract class Internationalized extends \MvcCore\Ext\Views\Helpers\AbstractHelp
 	/**
 	 * Set up view properties and language and locale by request object in every view rendering change.
 	 * @param \MvcCore\IView $view
-	 * @return \MvcCore\Ext\Views\Helpers\Internationalized
+	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function & SetView (\MvcCore\IView & $view) {
 		parent::SetView($view);
