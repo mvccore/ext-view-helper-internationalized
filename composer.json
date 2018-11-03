@@ -28,7 +28,7 @@
 		"php": ">=5.3.0",
 		"mvccore/mvccore": "^4.3.1",
 		"mvccore/ext-view-helper": "^4.3.1",
-		"mvccore/ext-tool-locales": "^4.3.1"
+		"mvccore/ext-tool-locale": "^4.3.1"
 	},
 	"autoload": {
 		"classmap": ["src/"]
