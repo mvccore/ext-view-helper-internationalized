@@ -130,8 +130,9 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	}
 
 	/**
-	 * Set language code and locale (teritory) code manualy.
-	 * Use this function olny if there is no language and locale codes presented in request object.
+	 * Set language code and locale (territory) code manually.
+	 * Use this function only if there is no language and locale 
+	 * codes presented in request object.
 	 * @param string $lang `"en" | "de" ...`
 	 * @param string $locale `"US" | "GB" ...`
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
