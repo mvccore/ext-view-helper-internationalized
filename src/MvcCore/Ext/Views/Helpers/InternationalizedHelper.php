@@ -16,16 +16,16 @@ namespace MvcCore\Ext\Views\Helpers;
 use \MvcCore\Ext\Tools;
 
 /**
- * Responsibility - abstract class to process date, number or money formating by `Intl` extension or by locale formating conventions.
- * - Formating processed by `Intl` extension if installed or (automaticly) configured system locale settings.
- * - System locale settings automaticly configured by request language and request locale.
+ * Responsibility - abstract class to process date, number or money formatting by `Intl` extension or by locale formatting conventions.
+ * - Formatting processed by `Intl` extension if installed or (automatically) configured system locale settings.
+ * - System locale settings automatically configured by request language and request locale.
  * - Encoding result string to always return it in response encoding, in UTF-8 by default.
  */
 abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\AbstractHelper
 {
 	/**
 	 * MvcCore Extension - View Helper - Assets - version:
-	 * Comparation by PHP function version_compare();
+	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
 	const VERSION = '5.0.0-alpha';
@@ -35,31 +35,31 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @see http://php.net/manual/en/book.intl.php
 	 * @var bool|NULL
 	 */
-	protected $intlExtensionFormating = NULL;
+	protected $intlExtensionFormatting = NULL;
 
 	/**
-	 * Automaticly assigned language from controller request object.
+	 * Automatically assigned language from controller request object.
 	 * @var string|NULL
 	 */
 	protected $lang = NULL;
 
 	/**
-	 * Automaticly assigned locale from controller request object.
+	 * Automatically assigned locale from controller request object.
 	 * @var string|NULL
 	 */
 	protected $locale = NULL;
 
 	/**
-	 * Automaticly assigned lang and locale combination from controller request object.
+	 * Automatically assigned lang and locale combination from controller request object.
 	 * @var string|NULL
 	 */
 	protected $langAndLocale = NULL;
 
 	/**
-	 * Storage with `Intl` datetime and number formater instances.
+	 * Storage with `Intl` datetime and number formatter instances.
 	 * @var \IntlDateFormatter[]|\NumberFormatter[]
 	 */
-	protected $intlFormaters = [];
+	protected $intlFormatters = [];
 
 	/**
 	 * Default encoding to use if there is no response encoding configured.
@@ -68,7 +68,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	protected $defaultEncoding = 'UTF-8';
 
 	/**
-	 * System `setlocale()` category to set up system locale automaticly in `SetView()` method.
+	 * System `setlocale()` category to set up system locale automatically in `SetView()` method.
 	 * @var \int[]
 	 */
 	protected $localeCategories = [LC_ALL];
@@ -76,56 +76,56 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	/**
 	 * `TRUE` if there necessary to process any `iconv()` conversion from `strftime()`
 	 * or from `number_format()` etc... results into view helper result rendered into
-	 * application response. This variable is automaticly resolved in every `SetView()` call.
+	 * application response. This variable is automatically resolved in every `SetView()` call.
 	 * @var bool|NULL
 	 */
 	protected $encodingConversion = NULL;
 
 	/**
-	 * System `setlocale()` encoding, automaticly configured by application request object.
+	 * System `setlocale()` encoding, automatically configured by application request object.
 	 * If there is no language and locale in request object, there is set UTF-8 by default.
-	 * This variable is automaticly resolved in every `SetView()` call.
+	 * This variable is automatically resolved in every `SetView()` call.
 	 * @var string|NULL
 	 */
 	protected $systemEncoding = NULL;
 
 	/**
-	 * Target encoding, automaticly assigned from application response.
+	 * Target encoding, automatically assigned from application response.
 	 * If there is no response encoding, there is set UTF-8 by default.
-	 * This variable is automaticly resolved in every `SetView()` call.
+	 * This variable is automatically resolved in every `SetView()` call.
 	 * @var string|NULL
 	 */
 	protected $responseEncoding = NULL;
 
 	/**
-	 * Default language and locale used for `Intl` formating fallback,
+	 * Default language and locale used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
-	 * and when there is necessary to define some default formating rules.
+	 * and when there is necessary to define some default formatting rules.
 	 * @var string[]
 	 */
 	protected $defaultLangAndLocale = ['en', 'US'];
 
 	/**
-	 * Create new helper instance, set boolean about `Intl` extension formating by loaded extension.
-	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
+	 * Create new helper instance, set boolean about `Intl` extension formatting by loaded extension.
+	 * @return void
 	 */
 	public function __construct () {
-		$this->intlExtensionFormating = extension_loaded('Intl');
+		$this->intlExtensionFormatting = extension_loaded('Intl');
 	}
 
 	/**
-	 * Set `TRUE` if you want to use explicitly `Intl` extension formating
+	 * Set `TRUE` if you want to use explicitly `Intl` extension formatting
 	 * (PHP Internationalization Functions) or set `FALSE` if you want to use explicitly
-	 * `strftime()`, `number_format()`, `money_format()` etc... old fashion functions formating.
+	 * `strftime()`, `number_format()`, `money_format()` etc... old fashion functions formatting.
 	 * @see http://php.net/manual/en/book.intl.php
 	 * @see http://php.net/strftime
 	 * @see http://php.net/number_format
 	 * @see http://php.net/money_format
-	 * @param bool $intlExtensionFormating `TRUE` by default.
+	 * @param bool $intlExtensionFormatting `TRUE` by default.
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
-	public function & SetIntlExtensionFormating ($intlExtensionFormating = TRUE) {
-		$this->intlExtensionFormating = $intlExtensionFormating;
+	public function & SetIntlExtensionFormatting ($intlExtensionFormatting = TRUE) {
+		$this->intlExtensionFormatting = $intlExtensionFormatting;
 		return $this;
 	}
 
@@ -151,7 +151,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	/**
 	 * Set default encoding if there is no response encoding configured.
 	 * Use this function is used only if `Intl` extension is not installed
-	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formating as a fallback.
+	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
 	 * @param string $encoding
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
@@ -161,9 +161,9 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	}
 
 	/**
-	 * Set default language and locale used for `Intl` formating fallback,
+	 * Set default language and locale used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
-	 * and when there is necessary to define some default formating rules.
+	 * and when there is necessary to define some default formatting rules.
 	 * @param string[] $defaultLangAndLocale
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
@@ -185,7 +185,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	/**
 	 * Try to define system locale and it's system locale conversion information.
 	 * This function is used only if `Intl` extension is not installed
-	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formating as a fallback.
+	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
 	 * @return void
 	 */
 	protected function setUpSystemLocaleAndEncodings () {
@@ -221,7 +221,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	/**
 	 * Encode given string from system encoding into response encoding if necessary.
 	 * This function is used only if `Intl` extension is not installed
-	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formating as a fallback.
+	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
 	 * @param string $str
 	 * @return string
 	 */
