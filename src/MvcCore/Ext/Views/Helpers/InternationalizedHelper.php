@@ -175,7 +175,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 
 	/**
 	 * Set up view properties and language and locale by request object in every view rendering change.
-	 * @param \MvcCore\IView $view
+	 * @param \MvcCore\View|\MvcCore\IView $view
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function & SetView (\MvcCore\IView & $view) {
