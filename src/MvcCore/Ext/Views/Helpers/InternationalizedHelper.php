@@ -20,6 +20,7 @@ use \MvcCore\Ext\Tools;
  * - Formatting processed by `Intl` extension if installed or (automatically) configured system locale settings.
  * - System locale settings automatically configured by request language and request locale.
  * - Encoding result string to always return it in response encoding, in UTF-8 by default.
+ * @method \MvcCore\Ext\Views\Helpers\InternationalizedHelper GetInstance()
  */
 abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\AbstractHelper
 {
