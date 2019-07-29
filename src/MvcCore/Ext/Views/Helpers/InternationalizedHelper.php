@@ -111,7 +111,8 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @return void
 	 */
 	public function __construct () {
-		$this->intlExtensionFormatting = extension_loaded('Intl');
+		if ($this->intlExtensionFormatting === NULL)
+			$this->intlExtensionFormatting = extension_loaded('Intl');
 	}
 
 	/**
