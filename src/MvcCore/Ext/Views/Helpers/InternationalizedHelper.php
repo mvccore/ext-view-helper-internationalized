@@ -126,7 +126,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @param bool $intlExtensionFormatting `TRUE` by default.
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
-	public function & SetIntlExtensionFormatting ($intlExtensionFormatting = TRUE) {
+	public function SetIntlExtensionFormatting ($intlExtensionFormatting = TRUE) {
 		$this->intlExtensionFormatting = $intlExtensionFormatting;
 		return $this;
 	}
@@ -139,7 +139,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @param string $locale `"US" | "GB" ...`
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
-	public function & SetLangAndLocale ($lang = NULL, $locale = NULL) {
+	public function SetLangAndLocale ($lang = NULL, $locale = NULL) {
 		$this->lang = $lang;
 		$this->locale = $locale;
 		$this->encodingConversion = NULL;
@@ -158,7 +158,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @param string $encoding
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
-	public function & SetDefaultEncoding ($encoding = 'UTF-8') {
+	public function SetDefaultEncoding ($encoding = 'UTF-8') {
 		$this->defaultEncoding = strtoupper($encoding);
 		return $this;
 	}
@@ -170,7 +170,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @param string[] $defaultLangAndLocale
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
-	public function & SetDefaultLangAndLocale ($defaultLangAndLocale = ['en', 'US']) {
+	public function SetDefaultLangAndLocale ($defaultLangAndLocale = ['en', 'US']) {
 		$this->defaultLangAndLocale = $defaultLangAndLocale;
 		return $this;
 	}
@@ -180,7 +180,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @param \MvcCore\View|\MvcCore\IView $view
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
-	public function & SetView (\MvcCore\IView & $view) {
+	public function SetView (\MvcCore\IView $view) {
 		parent::SetView($view);
 		return $this->SetLangAndLocale($this->request->GetLang(), $this->request->GetLocale());
 	}
@@ -228,7 +228,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @param string $str
 	 * @return string
 	 */
-	protected function encode (& $str = '') {
+	protected function encode ($str = '') {
 		return $this->encodingConversion
 			? iconv($this->systemEncoding, $this->responseEncoding, $str)
 			: $str;
