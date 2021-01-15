@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
  * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
@@ -22,14 +22,14 @@ use \MvcCore\Ext\Tools;
  * - Encoding result string to always return it in response encoding, in UTF-8 by default.
  * @method \MvcCore\Ext\Views\Helpers\InternationalizedHelper GetInstance()
  */
-abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\AbstractHelper
-{
+abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\AbstractHelper {
+
 	/**
 	 * MvcCore Extension - View Helper - Assets - version:
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.0.0-alpha';
+	const VERSION = '5.0.0';
 
 	/**
 	 * Boolean about if `Intl` (PHP Internationalization Functions) has installed.
@@ -177,7 +177,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 
 	/**
 	 * Set up view properties and language and locale by request object in every view rendering change.
-	 * @param \MvcCore\View|\MvcCore\IView $view
+	 * @param \MvcCore\View $view
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetView (\MvcCore\IView $view) {
