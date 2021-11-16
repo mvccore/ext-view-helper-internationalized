@@ -29,7 +29,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.0.0';
+	const VERSION = '5.0.1';
 
 	/**
 	 * Boolean about if `Intl` (PHP Internationalization Functions) has installed.
@@ -182,7 +182,10 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 */
 	public function SetView (\MvcCore\IView $view) {
 		parent::SetView($view);
-		return $this->SetLangAndLocale($this->request->GetLang(), $this->request->GetLocale());
+		return $this->SetLangAndLocale(
+			$this->lang ?: $this->request->GetLang(), 
+			$this->locale ?: $this->request->GetLocale()
+		);
 	}
 
 	/**
