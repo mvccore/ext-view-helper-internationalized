@@ -123,7 +123,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * @see http://php.net/strftime
 	 * @see http://php.net/number_format
 	 * @see http://php.net/money_format
-	 * @param bool $intlExtensionFormatting `TRUE` by default.
+	 * @param  bool $intlExtensionFormatting `TRUE` by default.
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetIntlExtensionFormatting ($intlExtensionFormatting = TRUE) {
@@ -135,8 +135,8 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * Set language code and locale (territory) code manually.
 	 * Use this function only if there is no language and locale 
 	 * codes presented in request object.
-	 * @param string $lang `"en" | "de" ...`
-	 * @param string $locale `"US" | "GB" ...`
+	 * @param  string $lang   `"en" | "de" ...`
+	 * @param  string $locale `"US" | "GB" ...`
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetLangAndLocale ($lang = NULL, $locale = NULL) {
@@ -155,7 +155,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * Set default encoding if there is no response encoding configured.
 	 * Use this function is used only if `Intl` extension is not installed
 	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
-	 * @param string $encoding
+	 * @param  string $encoding
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetDefaultEncoding ($encoding = 'UTF-8') {
@@ -167,7 +167,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * Set default language and locale used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
 	 * and when there is necessary to define some default formatting rules.
-	 * @param string[] $defaultLangAndLocale
+	 * @param  string[] $defaultLangAndLocale
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetDefaultLangAndLocale ($defaultLangAndLocale = ['en', 'US']) {
@@ -177,7 +177,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 
 	/**
 	 * Set up view properties and language and locale by request object in every view rendering change.
-	 * @param \MvcCore\View $view
+	 * @param  \MvcCore\View $view
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetView (\MvcCore\IView $view) {
@@ -227,8 +227,9 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	/**
 	 * Encode given string from system encoding into response encoding if necessary.
 	 * This function is used only if `Intl` extension is not installed
-	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
-	 * @param string $str
+	 * and if there is necessary to use `strftime()` or `number_format()` etc.. 
+	 * formatting as a fallback.
+	 * @param  string $str
 	 * @return string
 	 */
 	protected function encode ($str = '') {
