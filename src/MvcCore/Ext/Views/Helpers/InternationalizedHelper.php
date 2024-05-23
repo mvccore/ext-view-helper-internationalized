@@ -20,7 +20,7 @@ use \MvcCore\Ext\Tools;
  * - Formatting processed by `Intl` extension if installed or (automatically) configured system locale settings.
  * - System locale settings automatically configured by request language and request locale.
  * - Encoding result string to always return it in response encoding, in UTF-8 by default.
- * @method \MvcCore\Ext\Views\Helpers\InternationalizedHelper GetInstance()
+ * @method static \MvcCore\Ext\Views\Helpers\InternationalizedHelper GetInstance()
  */
 abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\AbstractHelper {
 
@@ -58,7 +58,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 
 	/**
 	 * Storage with `Intl` datetime and number formatter instances.
-	 * @var \IntlDateFormatter[]|\NumberFormatter[]
+	 * @var array<string,\IntlDateFormatter|\NumberFormatter>
 	 */
 	protected $intlFormatters = [];
 
@@ -102,7 +102,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * Default language and locale used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
 	 * and when there is necessary to define some default formatting rules.
-	 * @var string[]
+	 * @var array{"0":string,"1":string}
 	 */
 	protected $defaultLangAndLocale = ['en', 'US'];
 
@@ -132,6 +132,16 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	}
 
 	/**
+	 * Get `TRUE` if you want to use explicitly `Intl` extension formatting
+	 * (PHP Internationalization Functions) or set `FALSE` if you want to use explicitly
+	 * `strftime()`, `number_format()`, `money_format()` etc... old fashion functions formatting.
+	 * @return bool
+	 */
+	public function GetIntlExtensionFormatting () {
+		return $this->intlExtensionFormatting;
+	}
+
+	/**
 	 * Set language code and locale (territory) code manually.
 	 * Use this function only if there is no language and locale 
 	 * codes presented in request object.
@@ -152,6 +162,15 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	}
 
 	/**
+	 * Get language code or language code and locale (territory) code together.
+	 * like `"en" | "de" | "en_US" | "en_GB" | "de_DE" | "de_AT"`
+	 * @return string
+	 */
+	public function GetLangAndLocale () {
+		return $this->langAndLocale;
+	}
+
+	/**
 	 * Set default encoding if there is no response encoding configured.
 	 * Use this function is used only if `Intl` extension is not installed
 	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
@@ -164,15 +183,35 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	}
 
 	/**
+	 * Get default encoding if there is no response encoding configured.
+	 * Use this function is used only if `Intl` extension is not installed
+	 * and if there is necessary to use `strftime()` or `number_format()` etc.. formatting as a fallback.
+	 * @return string
+	 */
+	public function GetDefaultEncoding () {
+		return $this->defaultEncoding;
+	}
+
+	/**
 	 * Set default language and locale used for `Intl` formatting fallback,
 	 * when is not possible to configure system locale value
 	 * and when there is necessary to define some default formatting rules.
-	 * @param  string[] $defaultLangAndLocale
+	 * @param  array{"0":string,"1":string} $defaultLangAndLocale
 	 * @return \MvcCore\Ext\Views\Helpers\InternationalizedHelper
 	 */
 	public function SetDefaultLangAndLocale ($defaultLangAndLocale = ['en', 'US']) {
 		$this->defaultLangAndLocale = $defaultLangAndLocale;
 		return $this;
+	}
+
+	/**
+	 * Get default language and locale used for `Intl` formatting fallback,
+	 * when is not possible to configure system locale value
+	 * and when there is necessary to define some default formatting rules.
+	 * @return array{"0":string,"1":string}
+	 */
+	public function GetDefaultLangAndLocale () {
+		return $this->defaultLangAndLocale;
 	}
 
 	/**
@@ -204,6 +243,9 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 		$this->systemEncoding = NULL;
 		if ($this->lang !== NULL && $this->locale !== NULL) {
 			$systemEncodings = [];
+			$langAndLocale = $this->langAndLocale
+				? $this->langAndLocale
+				: $this->defaultLangAndLocale;
 			foreach ($this->localeCategories as $localeCategory) {
 				$newRawSystemLocaleValue = \MvcCore\Ext\Tools\Locale::SetLocale(
 					$localeCategory,
