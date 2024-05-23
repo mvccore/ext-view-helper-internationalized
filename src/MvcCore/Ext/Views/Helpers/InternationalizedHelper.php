@@ -29,7 +29,7 @@ abstract class InternationalizedHelper extends \MvcCore\Ext\Views\Helpers\Abstra
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.0.1';
+	const VERSION = '5.2.0';
 
 	/**
 	 * Boolean about if `Intl` (PHP Internationalization Functions) has installed.
